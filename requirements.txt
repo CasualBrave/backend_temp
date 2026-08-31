@@ -1,0 +1,2 @@
+# Documentation/smoke-test helpers only; research repos own their full environments.
+PyYAML>=6.0,<7
