@@ -2,7 +2,7 @@
 
 This repository is a **documentation and reproducibility handoff**, not a dataset or model release. It describes the pipeline actually used across a local WSL workstation and the `cvlab-110` / `cvlab-111` servers as audited on 2026-08-31.
 
-Start with [HANDOFF.md](HANDOFF.md), then read [PIPELINE.md](PIPELINE.md) and [DATA_FORMAT.md](DATA_FORMAT.md). Third-party provenance and redistribution constraints are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Start with [HANDOFF.md](HANDOFF.md), then read [PIPELINE.md](PIPELINE.md), [DATA_FORMAT.md](DATA_FORMAT.md), and the central fixed-size protocol in [FIXED_SIZE.md](FIXED_SIZE.md). Third-party provenance and redistribution constraints are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 ## Safe quick start
 

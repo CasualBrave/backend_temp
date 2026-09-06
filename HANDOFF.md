@@ -34,7 +34,7 @@ The verified route is:
 8. Convert Stage 2 registrations and SMPL-X to ContourCraft Stage 4 data.
 9. Optionally fine-tune ContourCraft from its pretrained checkpoint, simulate a trajectory, and render with Gaussian-Garments inference.
 
-See [PIPELINE.md](PIPELINE.md) for commands and contracts.
+See [PIPELINE.md](PIPELINE.md) for commands and contracts. Fixed-size ContourCraft work has its own required checks in [FIXED_SIZE.md](FIXED_SIZE.md).
 
 ## 4. Repository responsibilities
 
@@ -71,7 +71,7 @@ Do not copy entire dirty repos into this handoff. Preserve the actual change set
 - Stage 1: render front/back/left/right; inspect waist, cuffs, hem, collar, disconnected components and body contamination.
 - Stage 2: overlay template and registered meshes on early/middle/late frames; check topology and pose alignment.
 - Stage 3: inspect held-out views and RGBA/foreground behavior; look for dirty color transfer and edge artifacts.
-- ContourCraft: inspect frame 0 before long simulation; verify waistband pins and `node_type` for trousers.
+- ContourCraft: inspect frame 0 before long simulation; verify fixed-size node/face counts, waistband pins and `node_type` for trousers. Follow [FIXED_SIZE.md](FIXED_SIZE.md).
 - Inference: verify the requested source pose and camera sequence, then encode MP4.
 
 ## 9. Performance observations
@@ -109,6 +109,7 @@ Local WSL had an 8 GB RTX 5070 Laptop GPU and 11 GiB RAM; both servers had 32 GB
 - [ ] Stage 2 projection samples approved
 - [ ] Stage 3 checkpoint and visual samples approved
 - [ ] ContourCraft frame 0 and pinning inspected
+- [ ] Fixed-size dictionary/config/checkpoint contract verified, if applicable
 - [ ] Inference MP4 and exact command recorded
 - [ ] No credentials, datasets, checkpoints, or large output in Git
 

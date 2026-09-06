@@ -96,6 +96,8 @@ python train.py config=finetune/Actor08
 
 One Actor08 job loaded pretrained `contourcraft.pth`, ran from step 45,000 toward 46,000, saved every 50 steps, selected male SMPL-X, and enabled `pinned_verts`. This is experiment-specific. For trousers, verify `node_type == 3` exists at intended waistband vertices.
 
+Fixed-size experiments require an additional contract: the fixed node count, garment dictionary topology, rollout setting, and checkpoint must be from the same experiment. See [FIXED_SIZE.md](FIXED_SIZE.md) for the `00176 Lower` checks and review artifacts.
+
 ## H. Simulation, inference, and MP4
 
 Confirm the first simulated pose matches the actor/template pose before a full run.
