@@ -73,8 +73,8 @@ Apply the patch only to the audited Gaussian-Garments commit and review it first
 
 ```bash
 cd /path/to/Gaussian-Garments
-git apply --check /path/to/handoff/fixed_size/inference_fixed_size_views.patch
-git apply /path/to/handoff/fixed_size/inference_fixed_size_views.patch
+git apply --check --unidiff-zero /path/to/handoff/fixed_size/inference_fixed_size_views.patch
+git apply --unidiff-zero /path/to/handoff/fixed_size/inference_fixed_size_views.patch
 ```
 
 Prefer applying it on a new branch or disposable checkout. The patch modifies source and is not run automatically by this handoff.

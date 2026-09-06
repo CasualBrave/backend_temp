@@ -1,9 +1,6 @@
 --- inference.py
 +++ inference.py
-@@ -38,6 +38,21 @@
- 
- _create_standalone_context = moderngl.create_standalone_context
- 
+@@ -40,0 +41,15 @@
 +RENDER_VIEW = "front"
 +RENDER_DISTANCE = 3.0
 +
@@ -19,37 +16,19 @@
 +    return PinholeCamera(target + offsets[RENDER_VIEW], target, w, h,
 +                         world_up=[0.0, 0.0, -1.0], viewer=viewer)
 +
- 
- def _create_standalone_context_with_default_backend(*args, **kwargs):
-     kwargs.setdefault("backend", os.environ.get("GAUGAR_GL_BACKEND", "egl"))
-@@ -105,10 +120,8 @@
-     viewer.scene.add(vtmesh)
- 
-     if cam is None:
+@@ -108 +122,0 @@
 -        # horizontal view
-         target = viewer.scene.nodes[-1].current_center
+@@ -110,2 +124 @@
 -        position = target + np.array([0, 0, float(os.environ.get("GAUGAR_AIT_CAMERA_Z", "3"))])
 -        camera = PinholeCamera(position, target, w, h, viewer=viewer)
 +        camera = make_fixed_view_camera(target)
-     else:
-         if isinstance(cam, Camera):
-             target = viewer.scene.nodes[-1].current_center
-@@ -141,10 +154,8 @@
-         viewer.scene.add(body)
- 
-     if cam is None:
+@@ -144 +156,0 @@
 -        # horizontal view
-         target = viewer.scene.nodes[-1].current_center
+@@ -146,2 +158 @@
 -        position = target + np.array([0, 0, float(os.environ.get("GAUGAR_AIT_CAMERA_Z", "3"))])
 -        camera = PinholeCamera(position, target, w, h, viewer=viewer)
 +        camera = make_fixed_view_camera(target)
-     else:
-         if isinstance(cam, Camera):
-             # target = viewer.scene.nodes[-1].current_center # + np.array([0,0.3,0])
-@@ -346,6 +357,15 @@
-     def __init__(self, args):
-         # simulation and templates
-         self.simu_pkl = pickle.load(open(args.traj_path, 'rb'))
+@@ -348,0 +360,9 @@
 +        if args.lift_to_ground:
 +            pred = np.asarray(self.simu_pkl['pred'])
 +            obstacle = np.asarray(self.simu_pkl['obstacle'])
@@ -59,37 +38,16 @@
 +            self.simu_pkl['pred'] = pred + offset
 +            self.simu_pkl['obstacle'] = obstacle + offset
 +            print(f"Render-only Z lift: {z_shift:.4f} m")
-         self.texture_size = args.texture_size
-         self.garment_names = self.simu_pkl['garment_names']
- 
-@@ -456,7 +476,14 @@
-     parser.add_argument("--texture_list", "-tl", required=False, nargs='+', type=str, help="path to texture pkl")
-     parser.add_argument('--registration', type=str, required=False, default='')
-     parser.add_argument('--cam_name', type=str, required=False, default='', help='use a specific dataset camera, e.g. kinect_005')
+@@ -458,0 +479,5 @@
 +    parser.add_argument('--view', choices=('front', 'back', 'left', 'right'), default='front')
 +    parser.add_argument('--view_distance', type=float, default=3.0)
 +    parser.add_argument('--end_at', type=int, default=-1, help='exclusive frame limit; -1 renders all frames')
 +    parser.add_argument('--lift_to_ground', action='store_true')
 +    parser.add_argument('--ground_margin', type=float, default=0.05)
-     args = parser.parse_args(sys.argv[1:])
+@@ -459,0 +485,2 @@
 +    RENDER_VIEW = args.view
 +    RENDER_DISTANCE = args.view_distance
-     # path processing
- 
-     if args.HQ: w, h = 3004, 4092
-@@ -468,6 +495,7 @@
-     viewer.playback_fps = 30
-     viewer.shadows_enabled = False
-     viewer.scene.origin.enabled = False
+@@ -470,0 +498 @@
 +    viewer.scene.floor.enabled = False
-     cmap = plt.get_cmap('gist_rainbow')
- 
-     args.output_path = args.output_path
-@@ -486,6 +514,7 @@
-         for idx in tqdm(simu, desc="Rendering Sequence"):
-             if idx < args.start_from: continue
-             if idx >= len(simu): break
+@@ -488,0 +517 @@
 +            if args.end_at >= 0 and idx >= args.end_at: break
-             # body mesh
-             _body, _body_depth, ait_cam = ait_render(vb=simu.simu_pkl['obstacle'][idx], fb=simu.simu_pkl['obstacle_faces'], cam=fixed_ait_cam)
-             gs_cam = fixed_gs_cam if fixed_gs_cam is not None else from_ait_to_gs(ait_cam, w, h)
