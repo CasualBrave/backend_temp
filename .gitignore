@@ -20,6 +20,7 @@ videos/
 *.ckpt
 *.npz
 *.pkl
+!fixed_size/*.patch
 *.ply
 *.obj
 !examples/tiny_template.obj

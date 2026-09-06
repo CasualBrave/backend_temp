@@ -54,12 +54,8 @@ Reject the result if the cloth changes topology unexpectedly, waistband pins are
 
 ## Source-code handoff status
 
-The audited WSL and server checkouts contained custom fixed-size ContourCraft utilities/scripts as uncommitted research work. The current Git handoff records the protocol and verification contract but does **not** copy those scripts because their exact filenames, dirty patches, machine paths and redistribution status were not safely verified in this audit. To make fixed-size directly runnable by classmates, add a separately reviewed patch containing:
+The WSL source files were reviewed and sanitized into [`fixed_size/`](fixed_size/README.md). The package includes the prepare/simulate tool, resize recovery, non-destructive relaxation, dictionary inspection, a parameterized environment wrapper, and a minimal patch for fixed-view Gaussian-Garments inference.
 
-- the exact runner filename and commit/diff hash;
-- a sanitized sample config;
-- a CPU shape-check script;
-- one tiny synthetic garment dictionary (no real subject data);
-- the command and expected node/face counts.
+The original relaxation script wrote metadata back into its input dictionary. The handoff version requires `--input-garment-dict` and a distinct `--output-garment-dict`, and refuses existing outputs. The original shell runner's machine-specific paths were replaced by required environment variables.
 
 Do not upload the real `00176 Lower` dictionary, checkpoints, trajectories, SMPL-X/AMASS assets, or subject renders.

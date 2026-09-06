@@ -8,6 +8,7 @@ REQUIRED = [
     "README.md", "HANDOFF.md", "PIPELINE.md", "DATA_FORMAT.md",
     "THIRD_PARTY_NOTICES.md", "configs/sample_pipeline.yaml",
     "examples/cameras.example.json", "examples/tiny_template.obj",
+    "fixed_size/README.md", "fixed_size/inspect_garment_dict.py",
 ]
 
 def parse_obj(path):

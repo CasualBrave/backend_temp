@@ -31,5 +31,6 @@ The stage scripts are dry-run by default. Set `EXECUTE=1` only after checking ev
 - Gaussian-Garments Stage 2 registration and Stage 3 appearance training
 - Stage 4 conversion and ContourCraft fine-tuning/simulation
 - Gaussian-Garments inference/rendering
+- Fixed-size garment preparation, recovery, relaxation, inspection and view patch
 
 No production frontend, HTTP API, or publishing service was found in the audited directories.
