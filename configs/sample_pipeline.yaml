@@ -1,0 +1,40 @@
+project:
+  actor: ActorXX
+  sequence: Sequence1
+  garment: upper
+  gender: male
+  template_frame: 0
+paths:
+  actorshq_repo: /path/to/ActorsHQ-for-Gaussian-Garments
+  gaussian_garments_repo: /path/to/Gaussian-Garments
+  contourcraft_repo: /path/to/ContourCraft
+  data_root: /path/outside/git/data
+  output_root: /path/outside/git/outputs/ActorXX_upper_tf000000
+  auxiliary_root: /path/outside/git/auxiliary
+masking:
+  prompt: plaid shirt
+  reviewed_mask_root: /path/outside/git/reviewed_masks
+  excluded_cameras: []
+  box_threshold: 0.35
+  text_threshold: 0.25
+  use_hsv_or_morphology: false
+stage1:
+  gaussian_iterations: 30000
+  colmap_command: colmap
+  no_gpu_colmap: true
+stage2:
+  only_foreground_loss: true
+  use_icp: false
+  start_from: 0
+stage3:
+  epochs: 5
+  sh_degree: 3
+  texture_resolution: 512
+contourcraft:
+  enabled: false
+  pinned_verts: false
+  pretrained_checkpoint: /path/outside/git/checkpoints/contourcraft.pth
+  amass_root: /path/outside/git/amass
+provenance:
+  mask_review_revision: replace-me
+  notes: Keep source commits and dirty patch hashes with each run.

@@ -1,0 +1,5 @@
+# Synthetic triangle used only by scripts/smoke_test.py
+v 0.0 0.0 0.0
+v 1.0 0.0 0.0
+v 0.0 1.0 0.0
+f 1 2 3

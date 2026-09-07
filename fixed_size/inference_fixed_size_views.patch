@@ -1,0 +1,53 @@
+--- inference.py
++++ inference.py
+@@ -40,0 +41,15 @@
++RENDER_VIEW = "front"
++RENDER_DISTANCE = 3.0
++
++
++def make_fixed_view_camera(target):
++    """Create a horizontal camera for trajectories whose vertical axis is Z."""
++    offsets = {
++        "front": np.array([0.0, -RENDER_DISTANCE, 0.0]),
++        "back": np.array([0.0, RENDER_DISTANCE, 0.0]),
++        "left": np.array([-RENDER_DISTANCE, 0.0, 0.0]),
++        "right": np.array([RENDER_DISTANCE, 0.0, 0.0]),
++    }
++    return PinholeCamera(target + offsets[RENDER_VIEW], target, w, h,
++                         world_up=[0.0, 0.0, -1.0], viewer=viewer)
++
+@@ -108 +122,0 @@
+-        # horizontal view
+@@ -110,2 +124 @@
+-        position = target + np.array([0, 0, float(os.environ.get("GAUGAR_AIT_CAMERA_Z", "3"))])
+-        camera = PinholeCamera(position, target, w, h, viewer=viewer)
++        camera = make_fixed_view_camera(target)
+@@ -144 +156,0 @@
+-        # horizontal view
+@@ -146,2 +158 @@
+-        position = target + np.array([0, 0, float(os.environ.get("GAUGAR_AIT_CAMERA_Z", "3"))])
+-        camera = PinholeCamera(position, target, w, h, viewer=viewer)
++        camera = make_fixed_view_camera(target)
+@@ -348,0 +360,9 @@
++        if args.lift_to_ground:
++            pred = np.asarray(self.simu_pkl['pred'])
++            obstacle = np.asarray(self.simu_pkl['obstacle'])
++            z_min = min(float(pred[..., 2].min()), float(obstacle[..., 2].min()))
++            z_shift = max(0.0, -z_min + args.ground_margin)
++            offset = np.array([0.0, 0.0, z_shift], dtype=pred.dtype)
++            self.simu_pkl['pred'] = pred + offset
++            self.simu_pkl['obstacle'] = obstacle + offset
++            print(f"Render-only Z lift: {z_shift:.4f} m")
+@@ -458,0 +479,5 @@
++    parser.add_argument('--view', choices=('front', 'back', 'left', 'right'), default='front')
++    parser.add_argument('--view_distance', type=float, default=3.0)
++    parser.add_argument('--end_at', type=int, default=-1, help='exclusive frame limit; -1 renders all frames')
++    parser.add_argument('--lift_to_ground', action='store_true')
++    parser.add_argument('--ground_margin', type=float, default=0.05)
+@@ -459,0 +485,2 @@
++    RENDER_VIEW = args.view
++    RENDER_DISTANCE = args.view_distance
+@@ -470,0 +498 @@
++    viewer.scene.floor.enabled = False
+@@ -488,0 +517 @@
++            if args.end_at >= 0 and idx >= args.end_at: break
