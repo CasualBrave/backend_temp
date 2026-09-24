@@ -4,6 +4,8 @@ This repository is a **documentation and reproducibility handoff**, not a datase
 
 Start with [HANDOFF.md](HANDOFF.md), then read [PIPELINE.md](PIPELINE.md), [DATA_FORMAT.md](DATA_FORMAT.md), and the central fixed-size protocol in [FIXED_SIZE.md](FIXED_SIZE.md). Third-party provenance and redistribution constraints are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
+Recent custom result-improvement methods—and the execution mistakes that must not be counted as improvements—are separated in [RESULT_OPTIMIZATION_TOOLS.md](RESULT_OPTIMIZATION_TOOLS.md).
+
 ## Safe quick start
 
 ```bash

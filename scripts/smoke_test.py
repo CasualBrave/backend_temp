@@ -9,6 +9,17 @@ REQUIRED = [
     "THIRD_PARTY_NOTICES.md", "configs/sample_pipeline.yaml",
     "examples/cameras.example.json", "examples/tiny_template.obj",
     "fixed_size/README.md", "fixed_size/inspect_garment_dict.py",
+    "RESULT_OPTIMIZATION_TOOLS.md", "result_optimization/README.md",
+    "result_optimization/curved_hem_candidates.py",
+    "result_optimization/derive_view_camera_mapping.py",
+    "result_optimization/review_dino_sam2_masks.py",
+    "result_optimization/install_reviewed_masks.py",
+    "result_optimization/audit_tsdf_views.py",
+    "result_optimization/prepare_stratified_finetune.py",
+    "result_optimization/repair_mesh_boundaries.py",
+    "result_optimization/pin_boundary_loop.py",
+    "result_optimization/experimental_smplx_pose_transfer.py",
+    "result_optimization/exact_pose_contourcraft.md",
 ]
 
 def parse_obj(path):
